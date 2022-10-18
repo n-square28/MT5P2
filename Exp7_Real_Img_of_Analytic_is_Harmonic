@@ -1,0 +1,36 @@
+from sympy import diff, simplify, sinh, cosh, sin, cos, pprint
+from sympy.abc import x,y,theta,r
+
+def cart(u,v):
+    ux2 = diff(u,x,2)
+    uy2 = diff(u,y,2)
+    print("ux2 is", ux2,"\nuy2 is",uy2)
+    if simplify(ux2+uy2) == 0:
+        print("u is Harmonic\n")
+    
+    vx2 = diff(v,x,2)
+    vy2 = diff(v,y,2)
+    print("vx2 is", vx2,"\nvy2 is",vy2)
+    
+    if simplify(vx2+vy2) == 0:
+        print("v is Harmonic\n____\n")
+
+def polar(u,v):
+    ur = diff(u,r)
+    ur2 = diff(ur,r)
+    utheta2 = diff(u,theta,2)
+    print("ur is", ur,"\nur2 is", ur2,"\nutheta2 is",utheta2)
+    if simplify(ur2+(1/r)*ur+(1/r**2)*utheta2) == 0:
+        print("u is Harmonic\n")
+    vr = diff(v,r)
+    vr2 = diff(vr,r)
+    vtheta2 = diff(v,theta,2)
+    print("vr is", vr,"\nvr2 is", vr2,"\nvtheta2 is",vtheta2)
+    if simplify(vr2+(1/r)*vr+(1/r**2)*vtheta2) == 0:
+        print("v is Harmonic\n____\n")
+        
+cart(x**3-3*x*y**2, 3*x**2*y-y**3)
+cart(sin(x)*cosh(y),cos(x)*sinh(y))
+
+polar(cos(2*theta)/r**2,-sin(2*theta)/r**2)
+polar(r**2*cos(2*theta),r**2*sin(2*theta))
